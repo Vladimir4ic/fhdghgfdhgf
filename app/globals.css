@@ -1,0 +1,1313 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Dark Neumorphic Color Palette */
+  --background: #1A1A1A;
+  --foreground: #FFFFFF;
+  --card: #2A2A2A;
+  --card-foreground: #FFFFFF;
+  --popover: #2A2A2A;
+  --popover-foreground: #FFFFFF;
+  --primary: #4A90E2;
+  --primary-foreground: #FFFFFF;
+  --secondary: #3A3A3A;
+  --secondary-foreground: #CCCCCC;
+  --muted: #3A3A3A;
+  --muted-foreground: #999999;
+  --accent: #3A3A3A;
+  --accent-foreground: #FFFFFF;
+  --destructive: #E74C3C;
+  --destructive-foreground: #FFFFFF;
+  --border: #404040;
+  --input: #3A3A3A;
+  --ring: #4A90E2;
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --radius: 1rem;
+  --sidebar: #2A2A2A;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #4A90E2;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #3A3A3A;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #404040;
+  --sidebar-ring: #4A90E2;
+}
+
+.dark {
+  /* Dark Neumorphic UI */
+  --background: #1A1A1A;
+  --foreground: #FFFFFF;
+  --card: #2A2A2A;
+  --card-foreground: #FFFFFF;
+  --popover: #2A2A2A;
+  --popover-foreground: #FFFFFF;
+  /* Accents */
+  --primary: #4A90E2; /* neumorphic blue */
+  --primary-foreground: #FFFFFF;
+  --secondary: #3A3A3A;
+  --secondary-foreground: #CCCCCC;
+  --muted: #3A3A3A;
+  --muted-foreground: #999999;
+  --accent: #3A3A3A;
+  --accent-foreground: #FFFFFF;
+  /* Signals */
+  --destructive: #E74C3C; /* neumorphic red */
+  --destructive-foreground: #FFFFFF;
+  /* UI chrome */
+  --border: #404040;
+  --input: #3A3A3A;
+  --ring: #4A90E2;
+  /* Charts keep vibrant palette */
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  /* Sidebar */
+  --sidebar: #2A2A2A;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #4A90E2;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #3A3A3A;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #404040;
+  --sidebar-ring: #4A90E2;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    min-height: 100vh;
+    font-family: 'Inter', 'Roboto', system-ui, -apple-system, sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+  
+  /* Modern Typography Scale */
+  .text-display {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  
+  .text-heading {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  
+  .text-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+  }
+  
+  .text-body {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+  
+  .text-caption {
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  /* Modern font weights */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  p, span, div {
+    font-weight: 400;
+  }
+
+  button {
+    font-weight: 500;
+  }
+
+  input, textarea {
+    font-weight: 400;
+  }
+}
+
+/* MinteTon Custom Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scale-up {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes count-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes line-grow {
+  from {
+    stroke-dasharray: 0 1000;
+  }
+  to {
+    stroke-dasharray: 1000 0;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 300ms ease-out both;
+}
+
+.animate-slide-up {
+  animation: slide-up 300ms ease-out both;
+}
+
+.animate-scale-up {
+  animation: scale-up 0.3s ease-out;
+}
+
+.animate-count-up {
+  animation: count-up 0.6s ease-out both;
+}
+
+.animate-ripple {
+  animation: ripple 0.6s ease-out;
+}
+
+.animate-line-grow {
+  animation: line-grow 2s ease-out both;
+}
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(0, 188, 212, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.6), 0 0 30px rgba(0, 188, 212, 0.4);
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background-size: 200px 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* MinteTon Component Styles */
+.transition-all {
+  transition: all 0.3s ease;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Button Styles */
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  padding: 0.75rem 1.5rem;
+  border-radius: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+  padding: 0.75rem 1.5rem;
+  border-radius: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-outline {
+  border: 2px solid var(--foreground);
+  color: var(--foreground);
+  background-color: transparent;
+  padding: 0.75rem 1.5rem;
+  border-radius: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+/* Card Styles */
+.card {
+  background-color: var(--card);
+  color: var(--card-foreground);
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+/* Enhanced hover effects */
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal backdrop blur */
+.modal-backdrop {
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* Tab transition animations */
+.tab-content {
+  animation: fadeInSlide 0.3s ease-in-out;
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.tab-slide-left {
+  animation: slideLeft 0.3s ease-in-out;
+}
+
+.tab-slide-right {
+  animation: slideRight 0.3s ease-in-out;
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .safe-area-pb {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  
+  .touch-manipulation {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Улучшенная прокрутка на мобильных */
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .overflow-x-auto::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Минимальные размеры для кнопок на мобильных */
+  .min-touch-target {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+/* Starfield background and shooting stars */
+@keyframes twinkle {
+  0%, 100% { opacity: .4; }
+  50% { opacity: 1; }
+}
+
+@keyframes drift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-60px, -40px, 0); }
+}
+
+@keyframes shoot {
+  0% { opacity: 0; transform: translate3d(0, 0, 0) rotate(-20deg) scaleX(0.4); }
+  10% { opacity: 1; }
+  100% { opacity: 0; transform: translate3d(420px, -220px, 0) rotate(-20deg) scaleX(1); }
+}
+
+.starfield {
+  position: absolute;
+  inset: 0;
+  background-color: var(--background);
+  pointer-events: none;
+}
+
+.starfield::before,
+.starfield::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  opacity: .6;
+  animation: twinkle 3.2s ease-in-out infinite, drift 90s linear infinite;
+}
+
+/* Large sparse stars */
+.starfield::before {
+  background-image:
+    radial-gradient(2px 2px at 12% 18%, rgba(255,255,255,.7), transparent 60%),
+    radial-gradient(2px 2px at 28% 62%, rgba(255,255,255,.55), transparent 60%),
+    radial-gradient(2px 2px at 76% 28%, rgba(255,255,255,.65), transparent 60%),
+    radial-gradient(2px 2px at 64% 78%, rgba(255,255,255,.55), transparent 60%),
+    radial-gradient(2px 2px at 38% 34%, rgba(255,255,255,.6), transparent 60%),
+    radial-gradient(2px 2px at 86% 56%, rgba(255,255,255,.6), transparent 60%);
+}
+
+/* Smaller denser stars */
+.starfield::after {
+  background-image:
+    radial-gradient(1px 1px at 8% 44%, rgba(255,255,255,.45), transparent 55%),
+    radial-gradient(1px 1px at 22% 72%, rgba(255,255,255,.45), transparent 55%),
+    radial-gradient(1px 1px at 32% 24%, rgba(255,255,255,.45), transparent 55%),
+    radial-gradient(1px 1px at 42% 86%, rgba(255,255,255,.45), transparent 55%),
+    radial-gradient(1px 1px at 58% 12%, rgba(255,255,255,.45), transparent 55%),
+    radial-gradient(1px 1px at 66% 46%, rgba(255,255,255,.45), transparent 55%),
+    radial-gradient(1px 1px at 74% 84%, rgba(255,255,255,.45), transparent 55%),
+    radial-gradient(1px 1px at 88% 22%, rgba(255,255,255,.45), transparent 55%),
+    radial-gradient(1px 1px at 92% 68%, rgba(255,255,255,.45), transparent 55%);
+  animation-duration: 2.8s, 120s;
+}
+
+.shooting-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.shooting-stars span {
+  position: absolute;
+  width: 140px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.95) 50%, rgba(255,255,255,0) 100%);
+  border-radius: 2px;
+  filter: drop-shadow(0 0 6px rgba(59,167,255,.6));
+  transform: rotate(-20deg);
+  animation: shoot 5.5s linear infinite;
+}
+
+/* Modern Rocket animations for crash game */
+@keyframes rocket-hover {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+@keyframes rocket-crash {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(10deg);
+  }
+  100% {
+    transform: translateY(30px) rotate(35deg);
+  }
+}
+
+@keyframes rocket-idle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes flame-flicker {
+  0%, 100% {
+    opacity: 0.9;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.05);
+  }
+}
+
+@keyframes explosion {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-burst {
+  0% {
+    transform: translateX(0) translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(var(--particle-x, 100px)) translateY(var(--particle-y, 100px)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Modern cell animations for crash game */
+@keyframes cell-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.1);
+  }
+}
+
+@keyframes cell-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6), 0 0 30px rgba(59, 130, 246, 0.4);
+  }
+}
+
+@keyframes cell-shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-2px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(2px);
+  }
+}
+
+.rocket-hover {
+  animation: rocket-hover 2.5s ease-in-out infinite;
+}
+
+.rocket-crash {
+  animation: rocket-crash 1.2s ease-in forwards;
+}
+
+.rocket-idle {
+  animation: rocket-idle 4s ease-in-out infinite;
+}
+
+.flame-effect {
+  animation: flame-flicker 0.15s ease-in-out infinite;
+}
+
+.explosion-effect {
+  animation: explosion 1.2s ease-out forwards;
+}
+
+.particle-effect {
+  animation: particle-burst 1.2s ease-out forwards;
+}
+
+.pulse-glow {
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+  animation: glow 2.5s ease-in-out infinite;
+}
+
+/* Modern cell animations */
+.cell-pulse {
+  animation: cell-pulse 2s ease-in-out infinite;
+}
+
+.cell-glow {
+  animation: cell-glow 2s ease-in-out infinite;
+}
+
+.cell-shake {
+  animation: cell-shake 0.5s ease-in-out;
+}
+
+/* Neumorphic Styles */
+.neumorphic {
+  background: var(--card);
+  box-shadow: 
+    8px 8px 16px rgba(0, 0, 0, 0.3),
+    -8px -8px 16px rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.neumorphic-inset {
+  background: var(--card);
+  box-shadow: 
+    inset 8px 8px 16px rgba(0, 0, 0, 0.3),
+    inset -8px -8px 16px rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.neumorphic-button {
+  background: var(--card);
+  box-shadow: 
+    6px 6px 12px rgba(0, 0, 0, 0.3),
+    -6px -6px 12px rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.neumorphic-button:hover {
+  box-shadow: 
+    4px 4px 8px rgba(0, 0, 0, 0.3),
+    -4px -4px 8px rgba(255, 255, 255, 0.05);
+  transform: translateY(1px);
+}
+
+.neumorphic-button:active {
+  box-shadow: 
+    inset 4px 4px 8px rgba(0, 0, 0, 0.3),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.05);
+  transform: translateY(2px);
+}
+
+.neumorphic-primary {
+  background: var(--primary);
+  box-shadow: 
+    6px 6px 12px rgba(0, 0, 0, 0.3),
+    -6px -6px 12px rgba(74, 144, 226, 0.2);
+  border: 1px solid rgba(74, 144, 226, 0.3);
+  transition: all 0.2s ease;
+}
+
+.neumorphic-primary:hover {
+  box-shadow: 
+    4px 4px 8px rgba(0, 0, 0, 0.3),
+    -4px -4px 8px rgba(74, 144, 226, 0.3);
+  transform: translateY(1px);
+}
+
+.neumorphic-primary:active {
+  box-shadow: 
+    inset 4px 4px 8px rgba(0, 0, 0, 0.3),
+    inset -4px -4px 8px rgba(74, 144, 226, 0.2);
+  transform: translateY(2px);
+}
+
+.neumorphic-avatar {
+  background: var(--primary);
+  box-shadow: 
+    8px 8px 16px rgba(0, 0, 0, 0.3),
+    -8px -8px 16px rgba(74, 144, 226, 0.2);
+  border: 1px solid rgba(74, 144, 226, 0.3);
+}
+
+.neumorphic-pill {
+  background: var(--secondary);
+  box-shadow: 
+    inset 4px 4px 8px rgba(0, 0, 0, 0.3),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .rocket-hover {
+    animation-duration: 1.5s;
+  }
+  
+  .rocket-idle {
+    animation-duration: 2s;
+  }
+  
+  .flame-effect {
+    animation-duration: 0.08s;
+  }
+}
+
+/* Safe area support for mobile devices */
+.safe-area-pb {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+/* Touch optimizations */
+.touch-manipulation {
+  touch-action: manipulation;
+}
+
+/* Prevent zoom on input focus on mobile */
+@media (max-width: 768px) {
+  input[type="number"] {
+    font-size: 16px;
+  }
+}
+
+/* Smooth scrolling for mobile */
+@media (max-width: 768px) {
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Animated grid background with wave effect */
+@keyframes grid-move {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(20px, 20px);
+  }
+}
+
+@keyframes grid-pulse {
+  0%, 100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes wave-effect {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    transform: scale(1.02) rotate(0.5deg);
+    filter: hue-rotate(5deg);
+  }
+  50% {
+    transform: scale(1.05) rotate(0deg);
+    filter: hue-rotate(10deg);
+  }
+  75% {
+    transform: scale(1.02) rotate(-0.5deg);
+    filter: hue-rotate(5deg);
+  }
+}
+
+.grid-background {
+  position: absolute;
+  inset: 0;
+  background-color: var(--background);
+  background-image: 
+    linear-gradient(rgba(74, 144, 226, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 144, 226, 0.1) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: grid-move 20s linear infinite, grid-pulse 4s ease-in-out infinite, wave-effect 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.grid-background::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 120px 120px;
+  animation: grid-move 30s linear infinite reverse, grid-pulse 6s ease-in-out infinite;
+}
+
+.grid-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(0, 122, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(0, 122, 255, 0.1) 1px, transparent 1px);
+  background-size: 180px 180px;
+  animation: grid-move 40s linear infinite, grid-pulse 8s ease-in-out infinite;
+}
+
+/* Animated drops for cloth background */
+@keyframes drop-fall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes drop-wiggle {
+  0%, 100% {
+    transform: translateX(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateX(-2px) rotate(-1deg);
+  }
+  50% {
+    transform: translateX(0px) rotate(0deg);
+  }
+  75% {
+    transform: translateX(2px) rotate(1deg);
+  }
+}
+
+@keyframes drop-scale {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.drop-animation {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, rgba(0, 122, 255, 0.6) 0%, rgba(0, 122, 255, 0.2) 50%, transparent 100%);
+  border-radius: 50%;
+  animation: drop-fall 8s linear infinite, drop-wiggle 2s ease-in-out infinite, drop-scale 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.drop-animation:nth-child(odd) {
+  animation-delay: -2s;
+  animation-duration: 10s, 2.5s, 4s;
+}
+
+.drop-animation:nth-child(even) {
+  animation-delay: -4s;
+  animation-duration: 12s, 1.8s, 3.5s;
+}
+
+.drop-animation:nth-child(3n) {
+  animation-delay: -6s;
+  animation-duration: 9s, 2.2s, 3.8s;
+}
+
+/* Enhanced grid with drop effects */
+.grid-background-with-drops {
+  position: absolute;
+  inset: 0;
+  background-color: var(--background);
+  background-image: 
+    linear-gradient(rgba(0, 122, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 122, 255, 0.1) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: grid-move 20s linear infinite, grid-pulse 4s ease-in-out infinite;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.grid-background-with-drops::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 120px 120px;
+  animation: grid-move 30s linear infinite reverse, grid-pulse 6s ease-in-out infinite;
+}
+
+.grid-background-with-drops::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(0, 122, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(0, 122, 255, 0.1) 1px, transparent 1px);
+  background-size: 180px 180px;
+  animation: grid-move 40s linear infinite, grid-pulse 8s ease-in-out infinite;
+}
+
+/* Drop container for animated drops */
+.drops-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.drops-container .drop-animation:nth-child(1) { left: 10%; animation-delay: 0s; }
+.drops-container .drop-animation:nth-child(2) { left: 20%; animation-delay: -1s; }
+.drops-container .drop-animation:nth-child(3) { left: 30%; animation-delay: -2s; }
+.drops-container .drop-animation:nth-child(4) { left: 40%; animation-delay: -3s; }
+.drops-container .drop-animation:nth-child(5) { left: 50%; animation-delay: -4s; }
+.drops-container .drop-animation:nth-child(6) { left: 60%; animation-delay: -5s; }
+.drops-container .drop-animation:nth-child(7) { left: 70%; animation-delay: -6s; }
+.drops-container .drop-animation:nth-child(8) { left: 80%; animation-delay: -7s; }
+.drops-container .drop-animation:nth-child(9) { left: 90%; animation-delay: -8s; }
+
+/* Disable animations when no-animations class is present */
+.no-animations * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+.no-animations .drop-animation,
+.no-animations .grid-background-with-drops,
+.no-animations .grid-background-with-drops::before,
+.no-animations .grid-background-with-drops::after {
+  animation: none !important;
+}
+
+.no-animations .neumorphic-button:hover,
+.no-animations .neumorphic-primary:hover,
+.no-animations .neumorphic-avatar:hover {
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Fullscreen mode styles */
+html, body {
+  height: 100vh;
+  height: 100dvh; /* Dynamic viewport height for mobile */
+  margin: 0;
+  padding: 0;
+  background: #1a1a1a; /* Ensure background covers entire screen */
+}
+
+#__next {
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto; /* Allow vertical scrolling */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  background: #1a1a1a; /* Ensure background covers entire screen */
+}
+
+/* Ensure the app takes full screen */
+.min-h-screen {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Telegram WebApp specific styles */
+.telegram-webapp {
+  height: 100vh;
+  height: 100dvh;
+  width: 100vw;
+  overflow-y: auto; /* Allow vertical scrolling */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  background: #1a1a1a; /* Ensure background covers entire screen */
+}
+
+/* Mobile safe area and header spacing */
+@supports (padding: max(0px)) {
+  .mobile-header {
+    padding-top: max(env(safe-area-inset-top), 20px);
+    padding-left: max(env(safe-area-inset-left), 12px);
+    padding-right: max(env(safe-area-inset-right), 12px);
+  }
+  
+  .mobile-content {
+    padding-top: max(env(safe-area-inset-top), 20px);
+    margin-top: 80px; /* Space for header */
+  }
+}
+
+/* Fallback for browsers that don't support env() */
+@supports not (padding: max(0px)) {
+  .mobile-header {
+    padding-top: 20px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  
+  .mobile-content {
+    padding-top: 20px;
+    margin-top: 80px; /* Space for header */
+  }
+}
+
+/* Fixed positioning to prevent jitter */
+html, body {
+  overflow-x: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #1a1a1a; /* Ensure background covers entire screen */
+}
+
+#__next {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #1a1a1a; /* Ensure background covers entire screen */
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  .mobile-header {
+    position: fixed;
+    top: calc(env(safe-area-inset-top, 0px) + 90px); /* Return to previous position */
+    left: 0;
+    right: 0;
+    z-index: 50; /* Lower z-index to not overlay content */
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(12px);
+    transition: none; /* Remove transition to prevent jitter */
+    padding-top: 0; /* Remove padding since we're using top positioning */
+    min-height: 60px; /* Standard header height */
+  }
+  
+  .mobile-content {
+    margin-top: calc(env(safe-area-inset-top, 0px) + 90px); /* Dynamic margin based on safe area + header height + gap - adjusted for even higher positioning */
+    padding-bottom: 0; /* Remove bottom padding */
+    transition: none; /* Remove transition to prevent jitter */
+    position: relative;
+    z-index: 10; /* Lower z-index than profile modal */
+  }
+  
+  /* Ensure content doesn't get cut off */
+  .tab-content {
+    padding-top: calc(env(safe-area-inset-top, 0px) + 110px) !important; /* Dynamic padding - adjusted for even higher positioning */
+  }
+  
+  /* Desktop tab content positioning */
+  @media (min-width: 769px) {
+    .tab-content {
+      padding-top: calc(env(safe-area-inset-top, 0px) + 200px) !important; /* Higher padding for desktop */
+    }
+  }
+  
+  /* Crash game specific positioning - higher on mobile */
+  .crash-game-container {
+    margin-top: calc(env(safe-area-inset-top, 0px) + 120px) !important; /* Higher positioning for mobile */
+    padding-top: 0 !important;
+    transition: none; /* Remove transition to prevent jitter */
+    width: 100vw !important; /* Full width */
+    max-width: none !important; /* Remove max-width restrictions */
+    position: relative;
+    z-index: 10; /* Lower z-index than profile modal */
+  }
+  
+  /* Mines and Cases positioning - even higher on mobile */
+  .mines-container,
+  .cases-container {
+    margin-top: calc(env(safe-area-inset-top, 0px) + 60px) !important; /* Even higher positioning for mobile */
+    padding-top: 0 !important;
+    transition: none; /* Remove transition to prevent jitter */
+    width: 100vw !important; /* Full width */
+    max-width: none !important; /* Remove max-width restrictions */
+    position: relative;
+    z-index: 10; /* Lower z-index than profile modal */
+  }
+  
+  /* Remove container constraints */
+  .mines-container .container,
+  .cases-container .container,
+  .crash-game-container .container {
+    max-width: none !important;
+    width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  /* Bottom navigation adjustments */
+  .fixed.bottom-0 {
+    bottom: 0 !important; /* Stick to bottom of screen */
+    padding-bottom: env(safe-area-inset-bottom, 0px); /* Add safe area padding */
+  }
+  
+  /* Fill space above header with background */
+  .mobile-header::before {
+    content: '';
+    position: absolute;
+    top: -90px; /* Fill space above header */
+    left: 0;
+    right: 0;
+    height: 90px; /* Height of the space above header */
+    background: #1a1a1a; /* Same as main background */
+    z-index: -1;
+  }
+  
+  
+  /* Better spacing for game interfaces */
+  .crash-game-container .flex.flex-col.items-center {
+    padding-top: 5px; /* Minimal padding for highest positioning */
+  }
+  
+  /* Raise game control buttons higher */
+  .mines-container .space-y-4,
+  .mines-container .space-y-8 {
+    margin-top: -20px !important; /* Pull buttons up closer to mines grid */
+  }
+  
+  /* Specific spacing for game controls */
+  .mines-container .neumorphic-inset {
+    margin-top: -10px !important; /* Reduce gap between mines and controls */
+  }
+  
+  .mines-container .space-y-4,
+  .mines-container .space-y-8 {
+    padding-top: 5px; /* Minimal padding for highest positioning */
+  }
+  
+  .cases-container .relative {
+    padding-top: 5px; /* Minimal padding for highest positioning */
+  }
+}
+
+/* Desktop full width adjustments */
+@media (min-width: 769px) {
+  .mines-container,
+  .cases-container,
+  .crash-game-container {
+    width: 100vw !important;
+    max-width: none !important;
+    margin-top: calc(env(safe-area-inset-top, 0px) + 180px) !important; /* Lower positioning for desktop */
+  }
+  
+  .mines-container .container,
+  .cases-container .container,
+  .crash-game-container .container {
+    max-width: none !important;
+    width: 100% !important;
+  }
+  
+  /* Desktop button layout - 2 buttons per row */
+  .mines-container .grid.grid-cols-1.gap-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+  }
+  
+  .cases-container .grid.grid-cols-1.gap-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+  }
+}
+
+/* Ensure modals and overlays work in fullscreen */
+[data-radix-portal] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 9999;
+}
+
+/* Profile modal animations */
+@keyframes profileSlideIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes profileSlideOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes profileFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes profileFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes profileScaleIn {
+  from {
+    transform: scale(0.9) translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes profileScaleOut {
+  from {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.9) translateY(20px);
+    opacity: 0;
+  }
+}
+
+/* Profile modal animation classes */
+.profile-modal-enter {
+  animation: profileSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.profile-modal-exit {
+  animation: profileSlideOut 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.profile-overlay-enter {
+  animation: profileFadeIn 0.3s ease-out forwards;
+}
+
+.profile-overlay-exit {
+  animation: profileFadeOut 0.2s ease-out forwards;
+}
+
+.profile-content-enter {
+  animation: profileScaleIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.profile-content-exit {
+  animation: profileScaleOut 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
